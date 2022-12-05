@@ -29,7 +29,9 @@ export const getContactController = async (req: Request, res: Response) => {
 export const updateContactController = async (
   req: Request,
   res: Response
-) => {};
+) => {
+    await upda
+};
 
 export const deleteContactController = async (req: Request, res: Response) => {
   await deleteContactService(req.params.id);

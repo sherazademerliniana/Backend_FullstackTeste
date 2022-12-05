@@ -6,9 +6,9 @@ import { AppError } from "../../errors/AppError";
 export const deleteClientService = async (id: string) => {
   const clientRepository = AppDataSource.getRepository(Client);
 
-  const contactFind = await clientRepository.findOneBy({ id: id });
+  const clientFind = await clientRepository.findOneBy({ id: id });
 
-  if (!contactFind) {
+  if (!clientFind) {
     throw new AppError("User not exists", 404);
   }
 

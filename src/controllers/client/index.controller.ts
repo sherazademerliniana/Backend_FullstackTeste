@@ -6,6 +6,7 @@ import {
 import { instanceToPlain } from "class-transformer";
 import { getClientService } from "../../services/client/getClients.service";
 import { deleteClientService } from "../../services/client/deleteClient.service";
+import { updateClientService } from "../../services/client/updateClient.service";
 
 export const createClientController = async (req: Request, res: Response) => {
   try {
@@ -31,7 +32,11 @@ export const getClientController = async (req: Request, res: Response) => {
   return res.status(200).send(instanceToPlain(clientsFind));
 };
 
-export const updateClientController = async (req: Request, res: Response) => {};
+export const updateClientController = async (req: Request, res: Response) => {
+  await updateClientService(req.body, req.params.id);
+
+  return res.status(200).send();
+};
 
 export const deleteClientController = async (req: Request, res: Response) => {
   await deleteClientService(req.params.id);
