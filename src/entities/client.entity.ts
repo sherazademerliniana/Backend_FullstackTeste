@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 import { Contact } from "./contact.entity";
-import { Links } from "./links.entity";
+import { LinksClient } from "./linkClient.entity";
 
 @Entity()
 export class Client {
@@ -25,8 +25,8 @@ export class Client {
   })
   contact: Contact[];
 
-  @OneToMany(() => Links, (links) => links.client, {
+  @OneToMany(() => LinksClient, (links) => links.client, {
     eager: true,
   })
-  links: Links[];
+  links: LinksClient[];
 }
