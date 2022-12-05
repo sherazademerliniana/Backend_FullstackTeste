@@ -6,6 +6,7 @@ import {
 } from "../../services/contact/createContact.service";
 import { getContactService } from "../../services/contact/getContact.service";
 import { deleteContactService } from "../../services/contact/deleteContact.service";
+import { updateContactService } from "../../services/contact/updateContact.service";
 
 export const createContactController = async (req: Request, res: Response) => {
   const contactCreated = await createContactService(
@@ -26,11 +27,10 @@ export const getContactController = async (req: Request, res: Response) => {
   return res.status(200).send(contactsFind);
 };
 
-export const updateContactController = async (
-  req: Request,
-  res: Response
-) => {
-    await upda
+export const updateContactController = async (req: Request, res: Response) => {
+  await updateContactService(req.body, req.params.id);
+
+  return res.status(200).send();
 };
 
 export const deleteContactController = async (req: Request, res: Response) => {
