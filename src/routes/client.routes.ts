@@ -8,7 +8,7 @@ import {
 
 export const clientRouter = Router();
 
-clientRouter.post("", createClientController);
+clientRouter.post("/:id_client", createClientController);
 clientRouter.get("", getClientController);
 clientRouter.delete("/:id", deleteClientController);
 clientRouter.patch("/:id", updateClientController);

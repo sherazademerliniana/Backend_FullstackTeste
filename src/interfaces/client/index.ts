@@ -1,8 +1,8 @@
-import { ILinks } from "../links";
+import { IContact } from "../contact";
 
 export interface IClientRequest {
   full_name: string;
-  links: ILinks[];
+  contacts: IContact[];
 }
 
 export interface IClientUpdate {

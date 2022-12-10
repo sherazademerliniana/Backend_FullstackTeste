@@ -1,13 +1,12 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-
-import { Contact } from "./contact.entity";
-import { LinksClient } from "./linkClient.entity";
+import { ContactsClient } from "./contactsClient.entity";
+import { User } from "./user.entity";
 
 @Entity()
 export class Client {
@@ -17,16 +16,11 @@ export class Client {
   @Column()
   full_name: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @ManyToOne((type) => User, (user) => user.client)
+  user: User;
 
-  @OneToMany(() => Contact, (contact) => contact.client, {
+  @OneToMany(() => ContactsClient, (contact) => contact.client, {
     eager: true,
   })
-  contact: Contact[];
-
-  @OneToMany(() => LinksClient, (links) => links.client, {
-    eager: true,
-  })
-  links: LinksClient[];
+  contact: ContactsClient[];
 }

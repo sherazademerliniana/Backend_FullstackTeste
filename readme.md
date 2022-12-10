@@ -9,7 +9,7 @@ Configure o seu .env , rode o comando `yarn typeorm migration:run -d src/data-so
 
 ### - Dados esperados:
 
-### - localhost:3000/clients -- Para criacao de cliente:
+### - localhost:8000/clients -- Para criacao de cliente:
 
 {
 	"full_name": string
@@ -21,7 +21,7 @@ Configure o seu .env , rode o comando `yarn typeorm migration:run -d src/data-so
 
 links sao um array de objetos contendo email e telephone dentro de cada objeto.
 
-### - localhost:3000/contacts/:id_client -- para criacao de contato
+### - localhost:8000/contacts/:id_client -- para criacao de contato
 
 Eh esperado que seja passado no site o id do client para que ele seja criado 
 
@@ -42,16 +42,16 @@ Utilizando os mesmos sites pode puxar os dados tanto de clientes como de contato
 
 # Delete :
 
-localhost:3000/contacts/:id
+localhost:8000/contacts/:id
 
-localhost:3000/clients/:id
+localhost:8000/clients/:id
 
 Utilizando esses sites voce pode deletar cliente ou o contato passando o id deles nos parametros.
 
 # Update :
 
-localhost:3000/contacts/:id
+localhost:8000/contacts/:id
 
-localhost:3000/clients/:id
+localhost:8000/clients/:id
 
 utiliza o mesmo mas so pode trocar o full_name.

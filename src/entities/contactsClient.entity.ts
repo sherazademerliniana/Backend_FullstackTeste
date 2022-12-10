@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Contact } from "./contact.entity";
 import { Exclude } from "class-transformer";
+import { Client } from "./client.entity";
 
 @Entity()
-export class LinksContact {
+export class ContactsClient {
   @PrimaryGeneratedColumn("uuid")
   @Exclude()
   readonly id: string;
@@ -14,8 +14,8 @@ export class LinksContact {
   @Column()
   telephone: string;
 
-  @ManyToOne((type) => Contact, (contact) => contact.links, {
+  @ManyToOne(() => Client, (client) => client.contact, {
     onDelete: "CASCADE",
   })
-  contact: Contact;
+  client: Client;
 }

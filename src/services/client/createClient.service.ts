@@ -1,41 +1,43 @@
 import AppDataSource from "../../data-source";
-import { Client } from "../../entities/client.entity";
-import { LinksClient } from "../../entities/linkClient.entity";
-import { IClientRequest } from "../../interfaces/client";
-import { ILinks } from "../../interfaces/links";
 
-export const createClientService = async ({
-  full_name,
-  links,
-}: IClientRequest) => {
+import { IContact } from "../../interfaces/contact";
+import { IClientRequest } from "../../interfaces/client";
+import { Client } from "../../entities/client.entity";
+import { ContactsClient } from "../../entities/contactsClient.entity";
+
+export const createClientService = async (
+  { full_name, contacts }: IClientRequest,
+  id_user: string
+) => {
   const clientRepository = AppDataSource.getRepository(Client);
 
   const client = clientRepository.create({
     full_name,
+    user: { id: id_user },
   });
   await clientRepository.save(client);
 
-  await createLinks(client.id, links);
+  await createContacts(client.id, contacts);
 
   return client;
 };
 
-const createLinks = (id_client: string, links: ILinks[]) => {
-  const linkClientRepository = AppDataSource.getRepository(LinksClient);
+const createContacts = (id_client: string, links: IContact[]) => {
+  const contactsClientRepository = AppDataSource.getRepository(ContactsClient);
 
-  const linksCreated = links.map(async ({ email, telephone }) => {
-    const newLink = linkClientRepository.create({
+  const contactsCreated = links.map(async ({ email, telephone }) => {
+    const newContact = contactsClientRepository.create({
       email,
       telephone,
       client: { id: id_client },
     });
 
-    await linkClientRepository.save(newLink);
+    await contactsClientRepository.save(newContact);
 
-    return newLink;
+    return newContact;
   });
 
-  return linksCreated;
+  return contactsCreated;
 };
 
 export const findClient = async (id: string) => {

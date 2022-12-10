@@ -9,7 +9,7 @@ export const deleteClientService = async (id: string) => {
   const clientFind = await clientRepository.findOneBy({ id: id });
 
   if (!clientFind) {
-    throw new AppError("User not exists", 404);
+    throw new AppError("Client not exists", 404);
   }
 
   await clientRepository.delete(id);
