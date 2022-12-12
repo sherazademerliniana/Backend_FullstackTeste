@@ -7,6 +7,7 @@ export const deleteUserService = async (id: string, req_id: string) => {
 
   const userFind = await userRepository.findOneBy({ id: id });
 
+  console.log(userFind);
   if (!userFind) {
     throw new AppError("User not exists", 404);
   }

@@ -5,10 +5,15 @@ import {
   getClientController,
   updateClientController,
 } from "../controllers/client/index.controller";
+import { verifyAuthTokenMiddleware } from "../middlewares/verifyAuthToken.middleware";
 
 export const clientRouter = Router();
 
-clientRouter.post("/:id_client", createClientController);
-clientRouter.get("", getClientController);
-clientRouter.delete("/:id", deleteClientController);
-clientRouter.patch("/:id", updateClientController);
+clientRouter.post(
+  "/:id_client",
+  verifyAuthTokenMiddleware,
+  createClientController
+);
+clientRouter.get("", verifyAuthTokenMiddleware, getClientController);
+clientRouter.delete("/:id", verifyAuthTokenMiddleware, deleteClientController);
+clientRouter.patch("/:id", verifyAuthTokenMiddleware, updateClientController);

@@ -14,7 +14,7 @@ export const createUserController = async (req: Request, res: Response) => {
     setTimeout(async () => {
       return res
         .status(201)
-        .send(instanceToPlain(await findUser(userCreated.id)));
+        .json(instanceToPlain(await findUser(userCreated.id)));
     }, 1000);
   } catch (err) {
     if (err instanceof Error) {
